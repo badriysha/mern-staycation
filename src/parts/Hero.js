@@ -6,7 +6,7 @@ import IconTravel from "assets/images/icons/ic-traveler.svg";
 import IconTreasure from "assets/images/icons/ic-treasure.svg";
 import IconCities from "assets/images/icons/ic-cities.svg";
 
-import Button from "elements/Button/index";
+import Button from "elements/Button";
 import formatNumber from "utils/numberFormat";
 export default function Hero(props) {
   function showMostPicked() {
@@ -15,6 +15,7 @@ export default function Hero(props) {
       behavior: "smooth",
     });
   }
+
   return (
     <section className="container pt-4">
       <div className="row align-items-center">

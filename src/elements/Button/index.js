@@ -9,7 +9,7 @@ export default function Button(props) {
   if (props.isBlock) className.push("btn-block");
   if (props.hasShadow) className.push("btn-shadow");
   const onClick = () => {
-    if (propTypes.onClick) props.onClick();
+    if (props.onClick) props.onClick();
   };
   if (props.isDisabled || props.isLoading) {
     if (props.isDisabled) className.push("disabled");
