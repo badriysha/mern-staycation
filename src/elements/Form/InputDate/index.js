@@ -56,9 +56,9 @@ export default function Date(props) {
           </span>
         </div>
         <input
+          readOnly
           type="text"
           className="form-control"
-          readOnly
           value={displayDate}
           placeholder={placeholder}
           onClick={() => setIsShowed(!isShowed)}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import propTypes from "prop-types";
 
@@ -12,29 +12,19 @@ export default function Number(props) {
     min,
     max,
     prefix,
-    sufix,
-    isSufixPlural,
+    suffix,
+    isSuffixPlural,
   } = props;
-  const [inputValue, setInputValue] = useState(`${prefix}${value}${sufix}`);
 
   const onChange = (e) => {
     let value = String(e.target.value);
-    if (prefix) value = value.replace(prefix);
-    if (sufix) value = value.replace(sufix);
-
-    const patternNumeric = new RegExp("[0-9]*");
-    const isNumeric = patternNumeric.test(value);
-
-    if (isNumeric && +value <= max && +value >= min) {
+    if (+value <= max && +value >= min) {
       props.onChange({
         target: {
           name: name,
           value: +value,
         },
       });
-      setInputValue(
-        `${prefix}${value}${sufix}${isSufixPlural && value > 1 ? "s" : ""}`
-      );
     }
   };
 
@@ -70,11 +60,14 @@ export default function Number(props) {
           min={min}
           max={max}
           name={name}
-          placeholder={placeholder ? placeholder : "0"}
-          value={String(inputValue)}
+          readOnly
           className="form-control"
+          placeholder={placeholder ? placeholder : "0"}
           onChange={onChange}
-        ></input>
+          value={`${prefix}${value}${suffix}${
+            isSuffixPlural && value > 1 ? "s" : ""
+          }`}
+        />
         <div className="input-group-append ">
           <span className="input-group-text plus" onClick={plus}>
             +
@@ -89,13 +82,13 @@ Number.defaultProps = {
   min: 1,
   max: 1,
   prefix: "",
-  sufix: "",
+  suffix: "",
 };
 
 Number.propTypes = {
   value: propTypes.oneOfType([propTypes.number, propTypes.string]),
   onChange: propTypes.func,
-  isSufixPlural: propTypes.bool,
+  isSuffixPlural: propTypes.bool,
   placeholder: propTypes.string,
   outerClass: propTypes.string,
 };

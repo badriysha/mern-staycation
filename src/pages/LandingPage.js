@@ -9,12 +9,16 @@ import Footer from "parts/Footer";
 
 import landingPage from "json/landingPage.json";
 export default class LandingPage extends Component {
+  componentDidMount() {
+    window.title = "Home | Staycatio";
+    window.scrollTo(0, 0);
+  }
+
   constructor(props) {
     super(props);
     this.refMostPicked = React.createRef();
   }
   render() {
-    console.log(this.props);
     return (
       <>
         <Header {...this.props}></Header>
