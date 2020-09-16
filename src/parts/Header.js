@@ -8,9 +8,24 @@ export default function Header(props) {
   const getNavLinkClass = (path) => {
     return props.location.pathname === path ? " active" : "";
   };
-  return (
-    <header className="spacing-sm">
+
+  if (props.isCentered)
+    return (
       <Fade>
+        <header className="sapcing-sm">
+          <div className="container">
+            <nav className="navbar navbar-expand-lg navbar-light">
+              <Button className="brand-text-icon mx-auto" type="link" href="">
+                Stay<span className="text-gray-900">cation.</span>
+              </Button>
+            </nav>
+          </div>
+        </header>
+      </Fade>
+    );
+  return (
+    <Fade>
+      <header className="spacing-sm">
         <div className="container">
           <nav className="navbar navbar-expand-lg navbar-light">
             <BrandIcon />
@@ -40,7 +55,7 @@ export default function Header(props) {
             </div>
           </nav>
         </div>
-      </Fade>
-    </header>
+      </header>
+    </Fade>
   );
 }
